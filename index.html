@@ -158,11 +158,11 @@ document["info"].html = document["info1"].html
 </head>
 
 <body onload="brython(1)">
-<h1>Turtle demo</h1>
+<h1>Pick the first one</h1>
 
 <p>Select the desired demo.
-<select id="demo_selector" autocomplete="off">
-  <option value="1">Square with default turtle</option>
+<select id="demo_selector" autocomplete="1">
+  <option value="1">This one!</option>
   <option value="2">Custom container and instant drawing</option>
   <option value="3">All the turtles</option>
   <option value="4">Writing samples</option>
@@ -187,25 +187,6 @@ Note that the content is editable.
 </pre>
 
 <div id="turtle-div" style="float:left;border:1px solid green; margin-left:50px;"> </div>
-
-<div id='info1' style='display:none'>
-<h2>Simple demo</h2>
-<p>When you click on <b>Run</b>, Brython translates the Python code into
-  Javascript, which is then being executed in a single thread. The end result of
-  turtle module computations is the creation of an aminated <em>scene</em> that
-  uses SVG. This scene is then added to the DOM so that it can be seen.</p>
-
-<p>The first time you do this, Brython has to do extra work to translate the
-turtle module from Python into Javascript; subsequent runs will be faster.</p>
-
-  <p>As soon as a scene has been created, the <b>Run</b> button will be disabled
-  and two new buttons will be enabled: one to clear everything so that the program
-  could be modified and executed again, and the second which can be used to show
-  the scene that was created as many times as desired, without requiring additional
-computation.</p>
-<p>When you select another demonstration, everything will be cleared automatically
-  without having to click on the <b>Clear</b> button.</p>
-</div>
 
 <div id='demo1' style="display:none">from browser import document
 import turtle
