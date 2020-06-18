@@ -16,33 +16,26 @@
 <script>
 window.addEventListener( "load", function () {
   function sendData() {
-    const XHR = new XMLHttpRequest();
+    let XHR = new XMLHttpRequest();
 
     // Bind the FormData object and the form element
-    const patsName = document.getElementById( "name" );
-    const url = "https://gender-api.com/get?key=BcZxVToAbanAZMXrZA&name=" + patsName
+    var patsName = document.getElementById( "name" );
+    let url = new URL("https://gender-api.com/get?key=BcZxVToAbanAZMXrZA");
+      url.searchParams.set("name", patsName);
 
-    // Define what happens on successful data submission
-    XHR.addEventListener( "load", function(event) {
-      alert( event.target.responseText );
-    } );
-
-    // Define what happens in case of error
-    XHR.addEventListener( "error", function( event ) {
-      alert( 'Oops! Something went wrong.' );
-    } );
     
     
     // Set up our request
     XHR.open( "GET", url, false );
-    XHR.responseType = "json";  
+    XHR.responseType = "json";
+    XHR.send();
     XHR.onload = function() {
       let responseObj = XHR.response;
       alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`)
-    };
+    }
 
     // The data sent is what the user provided in the form
-    XHR.send();
+    
     
     
   };
@@ -53,7 +46,6 @@ window.addEventListener( "load", function () {
   // ...and take over its submit event.
   form.addEventListener( "submit", function ( event ) {
     event.preventDefault();
-
     sendData();
   } );
 } );
