@@ -41,8 +41,10 @@ window.addEventListener( "load", function () {
     
   };
   
-  function fetchData( url ) {
-    fetch(url)
+  function fetchData(  ) {
+    let url = new URL("https://gender-api.com/get?key=BcZxVToAbanAZMXrZA");
+      url.searchParams.set("name", patsName.value);
+      fetch(url)
   .then(function(response) {
     return response.json();
   })
