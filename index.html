@@ -33,16 +33,19 @@ window.addEventListener( "load", function () {
     } );
 
     // Set up our request
-    XHR.open( "GET", url );
-
+    XHR.open( "GET", url, false );
     XHR.responseType = "json";
 
     // The data sent is what the user provided in the form
-    XHR.send();
-
-    XHR.onload = function() {
-        let responseObj = XHR.response;
-        alert(responseObj.message):
+    try {
+        XHR.send();
+        if ( XHR.stats != 200 ) {
+            alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        } else {
+            alert(XHR.response);
+        }
+    } catch(err) {
+        alert("Request failed.")
     };
   }
 
@@ -61,3 +64,16 @@ window.addEventListener( "load", function () {
 
 </body>
 </html>
+
+xhr.open('GET', '/article/xmlhttprequest/hello.txt', false);
+
+try {
+  xhr.send();
+  if (xhr.status != 200) {
+    alert(`Error ${xhr.status}: ${xhr.statusText}`);
+  } else {
+    alert(xhr.response);
+  }
+} catch(err) { // instead of onerror
+  alert("Request failed");
+}
