@@ -32,17 +32,14 @@ window.addEventListener( "load", function () {
       alert( 'Oops! Something went wrong.' );
     } );
     
-    XHR.responseType = "json";  
-    XHR.onloadend = function() {
-      if ( XHR.status != 200 ) {
-            alert(`Error ${XHR.status}: ${XHR.statusText}`);
-        } else {
-            alert(XHR.response);
-        }
-    };
+    
     // Set up our request
     XHR.open( "GET", url, false );
-    
+    XHR.responseType = "json";  
+    XHR.onload = function() {
+      let responseObj = XHR.response;
+      alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`)
+    };
 
     // The data sent is what the user provided in the form
     XHR.send();
