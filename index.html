@@ -31,23 +31,24 @@ window.addEventListener( "load", function () {
     XHR.addEventListener( "error", function( event ) {
       alert( 'Oops! Something went wrong.' );
     } );
-
+    
+      
+    XHR.onloadend = function() {
+      if ( XHR.stats != 200 ) {
+            alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        } else {
+            alert(XHR.response);
+        }
+    };
     // Set up our request
     XHR.open( "GET", url, false );
     XHR.responseType = "json";
 
     // The data sent is what the user provided in the form
-    try {
-        XHR.send();
-        if ( XHR.stats != 200 ) {
-            alert(`Error ${XHR.status}: ${XHR.statusText}`);
-        } else {
-            alert(XHR.response);
-        }
-    } catch(err) {
-        alert("Request failed.")
-    };
-  }
+    XHR.send();
+    
+    
+  };
 
   // Access the form element...
   const form = document.getElementById( "genderQ" );
