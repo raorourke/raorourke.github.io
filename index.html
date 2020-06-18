@@ -32,9 +32,9 @@ window.addEventListener( "load", function () {
       alert( 'Oops! Something went wrong.' );
     } );
     
-      
+    XHR.responseType = "json";  
     XHR.onloadend = function() {
-      if ( XHR.stats != 200 ) {
+      if ( XHR.status != 200 ) {
             alert(`Error ${XHR.status}: ${XHR.statusText}`);
         } else {
             alert(XHR.response);
@@ -42,7 +42,7 @@ window.addEventListener( "load", function () {
     };
     // Set up our request
     XHR.open( "GET", url, false );
-    XHR.responseType = "json";
+    
 
     // The data sent is what the user provided in the form
     XHR.send();
