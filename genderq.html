@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>What's Pat?</title>
+</head>
+<body>
+
+<form id="genderQ">
+    <label for="patsName">What's Pat's name?</label>
+    <input id="patsName" name="name" value="Pat">
+    <input type="submit" value="What's Pat?">
+</form>
+
+
+<script>
+window.addEventListener( "load", function () {
+ 
+ const patsName = document.getElementById( "patsName" );
+    
+ function sendData() {
+    let XHR = new XMLHttpRequest();
+
+    // Bind the FormData object and the form element
+    
+    let url = new URL("https://gender-api.com/get?key=BcZxVToAbanAZMXrZA");
+      url.searchParams.set("name", patsName.value);
+
+    
+    
+    // Set up our request
+    XHR.open( "GET", url, false );
+    XHR.send();
+    XHR.onload = function() {
+      let responseObj = XHR.response;
+      alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`);
+    };
+
+    
+    
+    
+  };
+  
+  function fetchData(  ) {
+    let url = new URL("https://gender-api.com/get?key=BcZxVToAbanAZMXrZA");
+      url.searchParams.set("name", patsName.value);
+      fetch(url)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(jsonResponse) {
+    // do something with jsonResponse
+      let responseObj = jsonResponse;
+      alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`);
+  });
+  };
+  // Access the form element...
+  const form = document.getElementById( "genderQ" );
+
+  // ...and take over its submit event.
+  form.addEventListener( "submit", function ( event ) {
+    event.preventDefault();
+    sendData();
+    fetchData( );
+  } );
+} );
+
+</script>
+
+</body>
+</html>
