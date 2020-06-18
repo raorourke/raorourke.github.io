@@ -19,7 +19,7 @@ window.addEventListener( "load", function () {
     let XHR = new XMLHttpRequest();
 
     // Bind the FormData object and the form element
-    let patsName = document.getElementById( "name" );
+    var patsName = document.getElementById( "name" );
     let url = new URL("https://gender-api.com/get?key=BcZxVToAbanAZMXrZA");
       url.searchParams.set("name", patsName);
 
