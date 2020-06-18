@@ -33,14 +33,25 @@ window.addEventListener( "load", function () {
     XHR.send();
     XHR.onload = function() {
       let responseObj = XHR.response;
-      alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`)
+      alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`);
     };
 
     
     
     
   };
-
+  
+  function fetchData( url ) {
+    fetch(url)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(jsonResponse) {
+    // do something with jsonResponse
+      let responseObj = jsonResponse;
+      alert(`${responseObj.name_sanitized} is ${responseObj.gender} (${responseObj.accuracy}%)`);
+  });
+  };
   // Access the form element...
   const form = document.getElementById( "genderQ" );
 
@@ -48,6 +59,7 @@ window.addEventListener( "load", function () {
   form.addEventListener( "submit", function ( event ) {
     event.preventDefault();
     sendData();
+    fetchData( url );
   } );
 } );
 
